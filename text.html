@@ -1,5 +1,25 @@
 <style>
 
+.looking{
+  font-size: 30px;
+  font-weight: bold;
+  width: 300px;
+  line-height: 24px;
+  margin-bottom: 10px;
+  color: rgb(96, 96, 96);
+  padding-top: 10px;
+}
+
+.edit-title{
+  margin-bottom: 50px;
+  font-size: 14px;
+  color: red;
+  text-align: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  text-decoration: underline;
+}
+
 p {
   font-family: Arial;
   margin-top: 0;
@@ -51,6 +71,14 @@ p {
 
 </style>
 
+<p class="edit-title">
+  Testing testing
+</p>
+
+<p class="looking">
+  Please look at me!
+</p>
+
 <p class="video-title">
   Talking Tech and AI with Google CEO Sundar Picahi!
 </p>
@@ -75,3 +103,9 @@ p {
   Shop early for the<strong>best selection</strong> of <u>holidy</u> favourites. 
   <span class="span-example">Shop now</span> 
 </p>
+<!-- If you have multiple lines that hit the same property in styles like how I did with the paragraphs,
+the selector that is more specific will have the effect because it is more specfic.
+For example, when I use the selector "p" that targets all the paragraphs, but when I use the selector for a specific paragraph,
+ that is more specific which means CSS Specificity will target the class selector.  This is also called CSS Specificity.
+ I have also learned that if you want to target a specific text in a paragraph, you should use <span>. Span allows a default text style and if you have a class for span,
+  you could target any text in the paragraph and change the styles in a default font.  -->
