@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>shopping webpage</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Webpage</title>
     <style>
         body {
             font-family: Arial, sans-serif;
         }
+
         .cart-button {
             padding: 10px 20px;
             background-color: #28a745;
@@ -14,45 +16,83 @@
             cursor: pointer;
             font-size: 16px;
         }
+
         .cart-button:hover {
             background-color: #218838;
         }
 
-        .pos_center{
-            position: absolute;
-            width: 70%;
-            left: 15%;
-            top: 20%;
+        /* Using flexbox to align text and image side by side */
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
         }
 
-        .img{
-            float:right;
+        .item img {
             height: 200px;
             width: 200px;
         }
 
+        .pos_center {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        /* Cart total style */
+        #cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
+</head>
 <body>
 
-    <h1>isaac store</h1>
+    <h1>Isaac Store</h1>
 
-    <div>
-        <p>T-shirt</p>
-        <p>$20</p>
-        <button class="cart-button">Add to Cart</button>
+    <!-- First Item -->
+    <div class="item">
+        <div>
+            <p>T-shirt</p>
+            <p>$20</p>
+            <button class="cart-button" onclick="addToCart(20)">Add to Cart</button>
+        </div>
+        <img src="isaactshirt.jpg" alt="T-shirt Image">
     </div>
 
-    <div class="pos_center">
-        <p>Isac Shirt</p>
-        <p>$1000</p>
-        <button class="cart-button">Add to Cart</button>
-        <img class="images" src ="isaactshirt.jpg">    
+    <!-- Second Item  -->
+    <div class="item pos_center">
+        <div>
+            <p>Isac Shirt</p>
+            <p>$1000</p>
+            <button class="cart-button" onclick="addToCart(1000)">Add to Cart</button>
+        </div>
+        <img class="img" src="isaactshirt.jpg" alt="Isac Shirt Image">
     </div>
 
-    <div>
-        <p>super cool kid</p>
-        <p>$100000</p>
-        <button class="cart-button">Add to Cart</button>
-        <img class="images" src ="isaachoco.jpg">
+    <!-- Third Item -->
+    <div class="item">
+        <div>
+            <p>Super Cool Kid</p>
+            <p>$100000</p>
+            <button class="cart-button" onclick="addToCart(100000)">Add to Cart</button>
+        </div>
+        <img class="img" src="isaachoco.jpg" alt="Super Cool Kid Image">
     </div>
-</body> 
+
+    <!-- Display Cart Total -->
+    <div id="cart-total">
+        Total: $0
+    </div>
+
+    <script>
+        let total = 0; // Initialize total cost
+
+        function addToCart(price) {
+            total += price; // Add the price to total
+            document.getElementById("cart-total").textContent = "Total: $" + total; // total display
+        }
+    </script>
+
+</body>
+</html>
