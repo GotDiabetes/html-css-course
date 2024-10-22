@@ -80,6 +80,32 @@
         <img class="img" src="isaachoco.jpg" alt="Super Cool Kid Image">
     </div>
 
+    <!--Fourth Item-->
+    <div class="item">
+        <div>
+            <p>Newjeans plushie</p>
+            <p>$21</p>
+            <button class="cart-button" onclick="addToCart(21)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!--Fifth Item-->
+    <div class="item">
+        <div>
+            <p>Toji's blade</p>
+            <p>$1530</p>
+            <button class="cart-button" onclick="addToCart(1530)">Add to Cart</button>
+        </div>
+    </div>
+
+<!--Reset Button-->
+<div class="item">
+    <div>
+        <p>This button will delete all your items in the cart</p>
+        <button class="cart-button" onclick="reset()">Reset the cart</button>
+    </div>
+</div>
+
     <!-- Display Cart Total -->
     <div id="cart-total">
         Total: $0
@@ -87,6 +113,12 @@
 
     <script>
         let total = 0; // Initialize total cost
+        let zero =0; // Set the cost to zero
+        
+        function reset(){
+            total=0; //Set the thing to zero
+            document.getElementById("cart-total").textContent = "Total: $" + total;
+        }
 
         function addToCart(price) {
             total += price; // Add the price to total
