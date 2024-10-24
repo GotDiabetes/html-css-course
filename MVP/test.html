@@ -17,11 +17,20 @@
             font-size: 16px;
         }
 
-        .cart-button:hover {
-            background-color: #218838;
+        .reset-button{
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: blanchedalmond;
+            cursor: pointer;
+            font-size: 20px;
         }
 
-        /* Using flexbox to align text and image side by side */
+        .cart-button:hover {
+            background-color: blue;
+            border: black;
+        }
+
         .item {
             display: flex;
             align-items: center;
@@ -38,11 +47,49 @@
             margin: 0 auto;
         }
 
-        /* Cart total style */
         #cart-total {
             font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: yellow;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            transform: scale(0);
+            transition: transform 2s ease;
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+
+        .show {
+            transform: scale(3);
         }
     </style>
 </head>
@@ -50,7 +97,6 @@
 
     <h1>Isaac Store</h1>
 
-    <!-- First Item -->
     <div class="item">
         <div>
             <p>T-shirt</p>
@@ -60,7 +106,6 @@
         <img src="isaactshirt.jpg" alt="T-shirt Image">
     </div>
 
-    <!-- Second Item  -->
     <div class="item pos_center">
         <div>
             <p>Isac Shirt</p>
@@ -70,59 +115,66 @@
         <img class="img" src="isaactshirt.jpg" alt="Isac Shirt Image">
     </div>
 
-    <!-- Third Item -->
     <div class="item">
         <div>
             <p>Super Cool Kid</p>
-            <p>$100000</p>
-            <button class="cart-button" onclick="addToCart(100000)">Add to Cart</button>
+            <p>$5</p>
+            <button class="cart-button" onclick="addToCart(5)">Add to Cart</button>
         </div>
         <img class="img" src="isaachoco.jpg" alt="Super Cool Kid Image">
     </div>
 
-    <!--Fourth Item-->
     <div class="item">
         <div>
             <p>Newjeans plushie</p>
             <p>$21</p>
             <button class="cart-button" onclick="addToCart(21)">Add to Cart</button>
         </div>
+        <img class="img" src="minji plushie.jpg" alt="Newjeans plushie image">
     </div>
 
-    <!--Fifth Item-->
     <div class="item">
         <div>
             <p>Toji's blade</p>
             <p>$1530</p>
             <button class="cart-button" onclick="addToCart(1530)">Add to Cart</button>
         </div>
+        <img class="img" src="toji blade.jpg" alt="Toji's blade image">
     </div>
 
-<!--Reset Button-->
-<div class="item">
-    <div>
-        <p>This button will delete all your items in the cart</p>
-        <button class="cart-button" onclick="reset()">Reset the cart</button>
+    <div class="item">
+        <div>
+            <p>This button will delete all your items in the cart</p>
+            <button class="reset-button" onclick="reset()">Reset the cart</button>
+        </div>
     </div>
-</div>
 
-    <!-- Display Cart Total -->
     <div id="cart-total">
         Total: $0
     </div>
 
+    <div id="cart-notification" class="hidden">Added to Cart!</div>
+
     <script>
-        let total = 0; // Initialize total cost
-        let zero =0; // Set the cost to zero
-        
-        function reset(){
-            total=0; //Set the thing to zero
+        let total = 0;
+
+        function reset() {
+            total = 0;
             document.getElementById("cart-total").textContent = "Total: $" + total;
         }
 
         function addToCart(price) {
-            total += price; // Add the price to total
-            document.getElementById("cart-total").textContent = "Total: $" + total; // total display
+            total += price;
+            document.getElementById("cart-total").textContent = "Total: $" + total;
+
+            const notification = document.getElementById("cart-notification");
+            notification.classList.remove("hidden");
+            notification.classList.add("show");
+
+            setTimeout(() => {
+                notification.classList.remove("show");
+                notification.classList.add("hidden");
+            }, 1000);
         }
     </script>
 
