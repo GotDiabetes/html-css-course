@@ -17,11 +17,11 @@
             font-size: 16px;
         }
 
-        .reset-button{
+        .reset-button {
             padding: 10px 20px;
             background-color: red;
             color: white;
-            border: blanchedalmond;
+            border: none;
             cursor: pointer;
             font-size: 20px;
         }
@@ -42,9 +42,9 @@
             width: 200px;
         }
 
-        .pos_center {
-            width: 70%;
-            margin: 0 auto;
+        #cart-items {
+            margin-top: 30px;
+            font-size: 18px;
         }
 
         #cart-total {
@@ -73,7 +73,7 @@
             text-align: center;
             transform: scale(0);
             transition: transform 2s ease;
-            animation: bounce 0.5s ease-in-out;
+            animation: bounce 1.5s ease-in-out;
         }
 
         @keyframes bounce {
@@ -101,45 +101,54 @@
         <div>
             <p>T-shirt</p>
             <p>$20</p>
-            <button class="cart-button" onclick="addToCart(20)">Add to Cart</button>
+            <button class="cart-button" onclick="addToCart(20, 'T-shirt')">Add to Cart</button>
         </div>
-        <img src="isaactshirt.jpg" alt="T-shirt Image">
+        <img src="heheboy.jpg" alt="T-shirt Image">
     </div>
 
-    <div class="item pos_center">
+    <div class="item">
         <div>
-            <p>Isac Shirt</p>
+            <p>Isaac Shirt</p>
             <p>$1000</p>
-            <button class="cart-button" onclick="addToCart(1000)">Add to Cart</button>
+            <button class="cart-button" onclick="addToCart(1000, 'Isaac Shirt')">Add to Cart</button>
         </div>
-        <img class="img" src="isaactshirt.jpg" alt="Isac Shirt Image">
+        <img src="isaactshirt.jpeg" alt="Isaac Shirt Image">
     </div>
 
     <div class="item">
         <div>
             <p>Super Cool Kid</p>
             <p>$5</p>
-            <button class="cart-button" onclick="addToCart(5)">Add to Cart</button>
+            <button class="cart-button" onclick="addToCart(5, 'Super Cool Kid')">Add to Cart</button>
         </div>
-        <img class="img" src="isaachoco.jpg" alt="Super Cool Kid Image">
+        <img src="isaachoco.jpeg" alt="Super Cool Kid Image">
     </div>
 
     <div class="item">
         <div>
-            <p>Newjeans plushie</p>
+            <p>Newjeans Plushie</p>
             <p>$21</p>
-            <button class="cart-button" onclick="addToCart(21)">Add to Cart</button>
+            <button class="cart-button" onclick="addToCart(21, 'Newjeans Plushie')">Add to Cart</button>
         </div>
-        <img class="img" src="minji plushie.jpg" alt="Newjeans plushie image">
+        <img src="minji plushie.jpeg" alt="Newjeans Plushie Image">
     </div>
 
     <div class="item">
         <div>
-            <p>Toji's blade</p>
+            <p>Toji's Blade</p>
             <p>$1530</p>
-            <button class="cart-button" onclick="addToCart(1530)">Add to Cart</button>
+            <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade')">Add to Cart</button>
         </div>
-        <img class="img" src="toji blade.jpg" alt="Toji's blade image">
+        <img src="toji blade.jpg" alt="Toji's Blade Image">
+    </div>
+
+    <div class="item">
+        <div>
+            <p>Cool CS Teacher</p>
+            <p>$64920</p>
+            <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher')">Add to Cart</button>
+        </div>
+        <img src="coollueken.jpg" alt="coollueken image">
     </div>
 
     <div class="item">
@@ -147,6 +156,11 @@
             <p>This button will delete all your items in the cart</p>
             <button class="reset-button" onclick="reset()">Reset the cart</button>
         </div>
+    </div>
+
+    <div id="cart-items">
+        <h3>Cart Items:</h3>
+        <ul id="item-list"></ul>
     </div>
 
     <div id="cart-total">
@@ -157,16 +171,23 @@
 
     <script>
         let total = 0;
+        let cartItems = [];
 
         function reset() {
             total = 0;
+            cartItems = [];
             document.getElementById("cart-total").textContent = "Total: $" + total;
+            document.getElementById("item-list").innerHTML = "";
         }
 
-        function addToCart(price) {
+        function addToCart(price, itemName) {
+            const item = { name: itemName, price: price };
+            cartItems.push(item);
             total += price;
             document.getElementById("cart-total").textContent = "Total: $" + total;
+            updateCartDisplay();
 
+            // Show notification
             const notification = document.getElementById("cart-notification");
             notification.classList.remove("hidden");
             notification.classList.add("show");
@@ -174,7 +195,34 @@
             setTimeout(() => {
                 notification.classList.remove("show");
                 notification.classList.add("hidden");
-            }, 1000);
+            }, 2000);
+        }
+
+        function removeFromCart(index) {
+            const item = cartItems[index];
+            total -= item.price;
+            cartItems.splice(index, 1);
+            document.getElementById("cart-total").textContent = "Total: $" + total;
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const itemList = document.getElementById("item-list");
+            itemList.innerHTML = "";
+
+            cartItems.forEach((item, index) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${item.name} - $${item.price}`;
+                
+                // Create remove button
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.style.marginLeft = "10px";
+                removeButton.onclick = () => removeFromCart(index);
+
+                listItem.appendChild(removeButton);
+                itemList.appendChild(listItem);
+            });
         }
     </script>
 
