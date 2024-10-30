@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Webpage</title>
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Gradient background */
+            background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+            background-size: cover;
+            color: white;
+        }
+
+        /* Center and style the title */
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         }
 
         .cart-button {
@@ -31,26 +51,47 @@
             border: black;
         }
 
+        /* Grid layout for items */
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
         .item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 80px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: black; /* Set item text color to black */
         }
 
         .item img {
-            height: 200px;
-            width: 200px;
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
         }
 
         #cart-items {
             margin-top: 30px;
             font-size: 18px;
+            max-height: 300px; /* Makes cart list scrollable */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            border-radius: 10px;
         }
 
         #cart-total {
             font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
+            color: white;
         }
 
         .hidden {
@@ -97,67 +138,64 @@
 
     <h1>Isaac Store</h1>
 
-    <div class="item">
-        <div>
+    <!-- Container for items in grid layout -->
+    <div class="item-container">
+        <div class="item">
             <p>T-shirt</p>
             <p>$20</p>
             <button class="cart-button" onclick="addToCart(20, 'T-shirt')">Add to Cart</button>
+            <img src="heheboy.jpg" alt="T-shirt Image">
         </div>
-        <img src="heheboy.jpg" alt="T-shirt Image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
             <p>Isaac Shirt</p>
             <p>$1000</p>
             <button class="cart-button" onclick="addToCart(1000, 'Isaac Shirt')">Add to Cart</button>
+            <img src="isaactshirt.jpeg" alt="Isaac Shirt Image">
         </div>
-        <img src="isaactshirt.jpeg" alt="Isaac Shirt Image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
             <p>Super Cool Kid</p>
             <p>$5</p>
             <button class="cart-button" onclick="addToCart(5, 'Super Cool Kid')">Add to Cart</button>
+            <img src="isaachoco.jpeg" alt="Super Cool Kid Image">
         </div>
-        <img src="isaachoco.jpeg" alt="Super Cool Kid Image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
             <p>Newjeans Plushie</p>
             <p>$21</p>
             <button class="cart-button" onclick="addToCart(21, 'Newjeans Plushie')">Add to Cart</button>
+            <img src="minji plushie.jpeg" alt="Newjeans Plushie Image">
         </div>
-        <img src="minji plushie.jpeg" alt="Newjeans Plushie Image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
             <p>Toji's Blade</p>
             <p>$1530</p>
             <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade')">Add to Cart</button>
+            <img src="toji blade.jpg" alt="Toji's Blade Image">
         </div>
-        <img src="toji blade.jpg" alt="Toji's Blade Image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
             <p>Cool CS Teacher</p>
             <p>$64920</p>
             <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher')">Add to Cart</button>
+            <img src="coollueken.jpg" alt="coollueken image">
         </div>
-        <img src="coollueken.jpg" alt="coollueken image">
-    </div>
 
-    <div class="item">
-        <div>
+        <div class="item">
+            <p>Fish</p>
+            <p>$1</p>
+            <button class="cart-button" onclick="addToCart(1, 'fish')">Add to Cart</button>
+            <img src="shrimp.jpg" alt="shrimp image">
+        </div>
+
+        <div class="item">
             <p>This button will delete all your items in the cart</p>
             <button class="reset-button" onclick="reset()">Reset the cart</button>
         </div>
     </div>
 
+    <!-- Cart display area -->
     <div id="cart-items">
         <h3>Cart Items:</h3>
         <ul id="item-list"></ul>
