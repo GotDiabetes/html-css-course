@@ -12,13 +12,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* Gradient background */
             background: linear-gradient(black);
             background-size: cover;
             color: white;
         }
 
-        /* Center and style the title */
         h1 {
             font-family: 'Poppins', sans-serif;
             text-align: center;
@@ -48,10 +46,8 @@
 
         .cart-button:hover {
             background-color: blue;
-            border: black;
         }
 
-        /* Grid layout for items */
         .item-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -66,7 +62,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: black; /* Set item text color to black */
+            color: black;
         }
 
         .item img {
@@ -78,7 +74,7 @@
         #cart-items {
             margin-top: 30px;
             font-size: 18px;
-            max-height: 300px; /* Makes cart list scrollable */
+            max-height: 300px;
             overflow-y: auto;
             border: 1px solid #ccc;
             padding: 10px;
@@ -91,7 +87,8 @@
             font-size: 20px;
             font-weight: bold;
             margin-top: 20px;
-            color: white;
+            color: black;
+            text-align: center;
         }
 
         .hidden {
@@ -138,7 +135,6 @@
 
     <h1>Isaac Store</h1>
 
-    <!-- Container for items in grid layout -->
     <div class="item-container">
         <div class="item">
             <p>T-shirt</p>
@@ -195,7 +191,6 @@
         </div>
     </div>
 
-    <!-- Cart display area -->
     <div id="cart-items">
         <h3>Cart Items:</h3>
         <ul id="item-list"></ul>
@@ -225,7 +220,6 @@
             document.getElementById("cart-total").textContent = "Total: $" + total;
             updateCartDisplay();
 
-            // Show notification
             const notification = document.getElementById("cart-notification");
             notification.classList.remove("hidden");
             notification.classList.add("show");
@@ -252,7 +246,6 @@
                 const listItem = document.createElement("li");
                 listItem.textContent = `${item.name} - $${item.price}`;
                 
-                // Create remove button
                 const removeButton = document.createElement("button");
                 removeButton.textContent = "Remove";
                 removeButton.style.marginLeft = "10px";
