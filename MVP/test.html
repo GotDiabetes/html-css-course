@@ -77,6 +77,11 @@
             max-width: 100%;
             object-fit: cover;
             border-radius: 8px;
+            transition: transform 0.5s ease, rotate 0.5s ease;
+        }
+
+        .item img.animate-img {
+            transform: scale(1.2) rotate(15deg);
         }
 
         #cart-items {
@@ -148,7 +153,7 @@
             <div class="item">
                 <p>T-shirt</p>
                 <p>$20</p>
-                <button class="cart-button" onclick="addToCart(20, 'T-shirt')">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(20, 'T-shirt', this)">Add to Cart</button>
                 <img src="https://raw.githubusercontent.com/GotDiabetes/html-css-course/main/MVP/images/heheboy.jpg" alt="T-shirt Image">
             </div>
 
@@ -188,26 +193,101 @@
             </div>
     
             <div class="item">
-                <p>Fish</p>
-                <p>$1</p>
-                <button class="cart-button" onclick="addToCart(1, 'fish')">Add to Cart</button>
-                <img src="images/shrimp.jpg" alt="shrimp image">
+                <p>Best college</p>
+                <p>$1000</p>
+                <button class="cart-button" onclick="addToCart(1000, 'Irvine')">Add to Cart</button>
+                <img src="images/best college shirt.webp" alt="irvine image">
             </div>
 
             <div class="item">
-                <p>not a fish</p>
-                <p>$10</p>
-                <button class="cart-button" onClick="addToCart(1,'fish')">Add to Cart</button>
-                <img src="images/shrimp.jpg" alt="shrimp image">
+                <p>snail</p>
+                <p>$0.01</p>
+                <button class="cart-button" onClick="addToCart(.01,'snail')">Add to Cart</button>
+                <img src="images/chipotle.webp" alt="chip image">
               </div>
       
+              <div class="item">
+                <p>IU</p>
+                <p>$100</p>
+                <button class="cart-button" onClick="addToCart(100,'IU')">Add to Cart</button>
+                <img src="images/iu mascot.jpg" alt="IU image">
+              </div>
 
-            <!-- More items go here... -->
+              <div class="item">
+                <p>worst brown sugar boba</p>
+                <p>$1</p>
+                <button class="cart-button" onClick="addToCart(1,'brown sugar drink')">Add to Cart</button>
+                <img src="images/milkcow brown sugar.avif" alt="boba image">
+              </div>
 
-            <div class="item">
+              <div class="item">
+                <p>cute cat</p>
+                <p>$500</p>
+                <button class="cart-button" onClick="addToCart(500,'doggie')">Add to Cart</button>
+                <img src="images/shorkie.webp" alt="shorkie image">
+              </div>
+
+              <div class="item">
+                <p>Peppermint mocha</p>
+                <p>$5.75</p>
+                <button class="cart-button" onClick="addToCart(5.75,'Peppermint Mocha')">Add to Cart</button>
+                <img src="images/starbucks.webp" alt="starbucks image">
+              </div>
+
+              <div class="item">
+                <p>Cal Poly</p>
+                <p>$16580</p>
+                <button class="cart-button" onClick="addToCart(16580,'safety')">Add to Cart</button>
+                <img src="images/cal poly.png" alt="cal poly image">
+              </div>
+              
+              <div class="item">
+                <p>Should have invested</p>
+                <p>$143</p>
+                <button class="cart-button" onClick="addToCart(143,'GPU')">Add to Cart</button>
+                <img src="images/gpu.jpg" alt="gpu image">
+              </div>
+
+              <div class="item">
+                <p>Unesscesary</p>
+                <p>$1000</p>
+                <button class="cart-button" onClick="addToCart(1000,'iphone 16')">Add to Cart</button>
+                <img src="images/iphone 16.jpg" alt="iphone 16 image">
+              </div>
+
+              <div class="item">
+                <p>goated cellphone</p>
+                <p>$150</p>
+                <button class="cart-button" onClick="addToCart(150,'Ipod')">Add to Cart</button>
+                <img src="images/ipod.jpg" alt="ipod image">
+              </div>
+
+              <div class="item">
+                <p>Jeffy</p>
+                <p>$2</p>
+                <button class="cart-button" onClick="addToCart(2,'Jeffy')">Add to Cart</button>
+                <img src="images/jeffy.webp" alt="jeffy image">
+              </div>
+
+              <div class="item">
+                <p>Nugget</p>
+                <p>$1</p>
+                <button class="cart-button" onClick="addToCart(1,'Nugget')">Add to Cart</button>
+                <img src="images/nugget.jpg" alt="nugget image">
+              </div>
+
+              <div class="item">
+                <p>Tacp cat</p>
+                <p>$3</p>
+                <button class="cart-button" onClick="addToCart(3,'Taco cat')">Add to Cart</button>
+                <img src="images/taco cat.jpg" alt="taco cat image">
+              </div>
+
+              <div class="item">
                 <p>This button will delete all your items in the cart</p>
                 <button class="reset-button" onclick="reset()">Reset the cart</button>
             </div>
+            <!-- Additional items go here -->
         </div>
     </div>
 
@@ -233,7 +313,7 @@
             document.getElementById("item-list").innerHTML = "";
         }
 
-        function addToCart(price, itemName) {
+        function addToCart(price, itemName, button) {
             const item = { name: itemName, price: price };
             cartItems.push(item);
             total += price;
@@ -248,6 +328,14 @@
                 notification.classList.remove("show");
                 notification.classList.add("hidden");
             }, 2000);
+
+            const itemElement = button.parentElement;
+            const img = itemElement.querySelector("img");
+            img.classList.add("animate-img");
+
+            setTimeout(() => {
+                img.classList.remove("animate-img");
+            }, 500);
         }
 
         function removeFromCart(index) {
