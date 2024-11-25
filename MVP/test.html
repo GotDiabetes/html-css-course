@@ -2,58 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Webpage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isaac Store</title>
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(black);
-            background-size: cover;
-            color: white;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: #333;
             overflow-x: hidden;
         }
 
         h1 {
-            font-family: 'Poppins', sans-serif;
             text-align: center;
             font-size: 3rem;
-            margin-top: 30px;
-            color: #c59c17;
+            margin: 20px 0;
+            color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         }
 
-        .cart-button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .reset-button {
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .cart-button:hover {
-            background-color: blue;
-        }
-
         .scroll-container {
-            max-height: 500px;
+            max-height: 70vh;
             overflow-y: auto;
             padding: 20px;
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
         }
 
         .item-container {
@@ -64,12 +45,16 @@
 
         .item {
             border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            background: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .item img {
@@ -77,70 +62,83 @@
             max-width: 100%;
             object-fit: cover;
             border-radius: 8px;
-            transition: transform 0.5s ease, rotate 0.5s ease;
+            transition: transform 0.3s;
         }
 
-        .item img.animate-img {
-            transform: scale(1.2) rotate(15deg);
+        .item img:hover {
+            transform: scale(1.1);
+        }
+
+        .item p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .cart-button,
+        .reset-button {
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cart-button {
+            background-color: #28a745;
+        }
+
+        .cart-button:hover {
+            background-color: #218838;
+        }
+
+        .reset-button {
+            background-color: #dc3545;
+            font-size: 18px;
+        }
+
+        .reset-button:hover {
+            background-color: #c82333;
         }
 
         #cart-items {
-            margin-top: 30px;
-            font-size: 18px;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: black;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #cart-items h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
         }
 
         #cart-total {
             font-size: 20px;
             font-weight: bold;
-            margin-top: 20px;
-            color: black;
+            margin: 15px 0;
+            color: #333;
             text-align: center;
-        }
-
-        .hidden {
-            display: none;
         }
 
         #cart-notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: yellow;
-            color: black;
-            font-size: 24px;
+            background-color: #ffc107;
+            color: #333;
+            font-size: 18px;
             font-weight: bold;
-            padding: 15px;
-            border: 3px solid #000;
+            padding: 10px 15px;
+            border: 1px solid #333;
             border-radius: 10px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            text-align: center;
-            transform: scale(0);
-            transition: transform 2s ease;
-            animation: bounce 1.5s ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            70% {
-                transform: scale(1);
-            }
-        }
-
-        .show {
-            transform: scale(3);
+            display: none;
         }
     </style>
 </head>
@@ -150,7 +148,7 @@
 
     <div class="scroll-container">
         <div class="item-container">
-            <!-- Item 1 -->
+            <!-- Item Template -->
             <div class="item">
                 <p>T-shirt</p>
                 <p>$20</p>
@@ -290,9 +288,7 @@
                 <p>This button will delete all your items in the cart</p>
                 <button class="reset-button" onclick="reset()">Reset the cart</button>
             </div>
-
-            <!-- Additional items go here -->
-            <!-- Repeat structure for each item -->
+            <!-- Repeat for other items -->
         </div>
     </div>
 
@@ -305,49 +301,27 @@
         Total: $0
     </div>
 
-    <div id="cart-notification" class="hidden">Added to Cart!</div>
+    <div id="cart-notification">Item added to cart!</div>
 
     <script>
         let total = 0;
         let cartItems = [];
 
+        function addToCart(price, itemName, button) {
+            const item = { name: itemName, price };
+            cartItems.push(item);
+            total += price;
+
+            document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
+            updateCartDisplay();
+
+            showNotification();
+        }
+
         function reset() {
             total = 0;
             cartItems = [];
-            document.getElementById("cart-total").textContent = "Total: $" + total;
-            document.getElementById("item-list").innerHTML = "";
-        }
-
-        function addToCart(price, itemName, button) {
-            const item = { name: itemName, price: price };
-            cartItems.push(item);
-            total += price;
-            document.getElementById("cart-total").textContent = "Total: $" + total;
-            updateCartDisplay();
-
-            const notification = document.getElementById("cart-notification");
-            notification.classList.remove("hidden");
-            notification.classList.add("show");
-
-            setTimeout(() => {
-                notification.classList.remove("show");
-                notification.classList.add("hidden");
-            }, 2000);
-
-            const itemElement = button.parentElement;
-            const img = itemElement.querySelector("img");
-            img.classList.add("animate-img");
-
-            setTimeout(() => {
-                img.classList.remove("animate-img");
-            }, 500);
-        }
-
-        function removeFromCart(index) {
-            const item = cartItems[index];
-            total -= item.price;
-            cartItems.splice(index, 1);
-            document.getElementById("cart-total").textContent = "Total: $" + total;
+            document.getElementById("cart-total").textContent = "Total: $0";
             updateCartDisplay();
         }
 
@@ -357,16 +331,38 @@
 
             cartItems.forEach((item, index) => {
                 const listItem = document.createElement("li");
-                listItem.textContent = `${item.name} - $${item.price}`;
+                listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`;
                 
                 const removeButton = document.createElement("button");
                 removeButton.textContent = "Remove";
                 removeButton.style.marginLeft = "10px";
+                removeButton.style.padding = "5px 10px";
+                removeButton.style.border = "none";
+                removeButton.style.backgroundColor = "#dc3545";
+                removeButton.style.color = "#fff";
+                removeButton.style.borderRadius = "5px";
+                removeButton.style.cursor = "pointer";
                 removeButton.onclick = () => removeFromCart(index);
 
                 listItem.appendChild(removeButton);
                 itemList.appendChild(listItem);
             });
+        }
+
+        function removeFromCart(index) {
+            total -= cartItems[index].price;
+            cartItems.splice(index, 1);
+            document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
+            updateCartDisplay();
+        }
+
+        function showNotification() {
+            const notification = document.getElementById("cart-notification");
+            notification.style.display = "block";
+
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 2000);
         }
     </script>
 
