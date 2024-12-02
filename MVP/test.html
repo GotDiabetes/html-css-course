@@ -140,6 +140,48 @@
             z-index: 1000;
             display: none;
         }
+
+        /* Spin the Wheel */
+        .wheel-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: conic-gradient(#28a745 0% 25%, #ffc107 25% 50%, #dc3545 50% 75%, #007bff 75% 100%);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .wheel .spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .spin-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .spin-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -156,139 +198,8 @@
                 <img src="https://raw.githubusercontent.com/GotDiabetes/html-css-course/main/MVP/images/heheboy.jpg" alt="T-shirt Image">
             </div>
 
-            <!-- Item 2 -->
-            <div class="item">
-                <p>Isaac Shirt</p>
-                <p>$1000</p>
-                <button class="cart-button" onclick="addToCart(1000, 'Isaac Shirt', this)">Add to Cart</button>
-                <img src="images/isaactshirt.jpeg" alt="Isaac Shirt Image">
-            </div>
-
-            <!-- Item 3 -->
-            <div class="item">
-                <p>Super Cool Kid</p>
-                <p>$5</p>
-                <button class="cart-button" onclick="addToCart(5, 'Super Cool Kid', this)">Add to Cart</button>
-                <img src="images/isaachoco.jpeg" alt="Super Cool Kid Image">
-            </div>
-
-            <div class="item">
-                <p>Newjeans Plushie</p>
-                <p>$21</p>
-                <button class="cart-button" onclick="addToCart(21, 'Newjeans Plushie', this)">Add to Cart</button>
-                <img src="images/minji plushie.jpeg" alt="Newjeans Plushie Image">
-            </div>
-    
-            <div class="item">
-                <p>Toji's Blade</p>
-                <p>$1530</p>
-                <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade', this)">Add to Cart</button>
-                <img src="images/toji blade.jpg" alt="Toji's Blade Image">
-            </div>
-    
-            <div class="item">
-                <p>Cool CS Teacher</p>
-                <p>$64920</p>
-                <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher'. this)">Add to Cart</button>
-                <img src="images/coollueken.jpg" alt="coollueken image">
-            </div>
-    
-            <div class="item">
-                <p>Best college</p>
-                <p>$1000</p>
-                <button class="cart-button" onclick="addToCart(1000, 'Irvine', this)">Add to Cart</button>
-                <img src="images/best college shirt.webp" alt="irvine image">
-            </div>
-
-            <div class="item">
-                <p>snail</p>
-                <p>$0.01</p>
-                <button class="cart-button" onClick="addToCart(.01,'snail', this)">Add to Cart</button>
-                <img src="images/chipotle.webp" alt="chip image">
-              </div>
-      
-              <div class="item">
-                <p>IU</p>
-                <p>$100</p>
-                <button class="cart-button" onClick="addToCart(100,'IU', this)">Add to Cart</button>
-                <img src="images/iu mascot.jpg" alt="IU image">
-              </div>
-
-              <div class="item">
-                <p>worst brown sugar boba</p>
-                <p>$1</p>
-                <button class="cart-button" onClick="addToCart(1,'brown sugar drink', this)">Add to Cart</button>
-                <img src="images/milkcow brown sugar.avif" alt="boba image">
-              </div>
-
-              <div class="item">
-                <p>cute cat</p>
-                <p>$500</p>
-                <button class="cart-button" onClick="addToCart(500,'doggie', this)">Add to Cart</button>
-                <img src="images/shorkie.webp" alt="shorkie image">
-              </div>
-
-              <div class="item">
-                <p>Peppermint mocha</p>
-                <p>$5.75</p>
-                <button class="cart-button" onClick="addToCart(5.75,'Peppermint Mocha', this)">Add to Cart</button>
-                <img src="images/starbucks.webp" alt="starbucks image">
-              </div>
-
-              <div class="item">
-                <p>Cal Poly</p>
-                <p>$16580</p>
-                <button class="cart-button" onClick="addToCart(16580,'safety', this)">Add to Cart</button>
-                <img src="images/cal poly.png" alt="cal poly image">
-              </div>
-              
-              <div class="item">
-                <p>Should have invested</p>
-                <p>$143</p>
-                <button class="cart-button" onClick="addToCart(143,'GPU', this)">Add to Cart</button>
-                <img src="images/gpu.jpg" alt="gpu image">
-              </div>
-
-              <div class="item">
-                <p>Unesscesary</p>
-                <p>$1000</p>
-                <button class="cart-button" onClick="addToCart(1000,'iphone 16', this)">Add to Cart</button>
-                <img src="images/iphone 16.jpg" alt="iphone 16 image">
-              </div>
-
-              <div class="item">
-                <p>goated cellphone</p>
-                <p>$150</p>
-                <button class="cart-button" onClick="addToCart(150,'Ipod',this )">Add to Cart</button>
-                <img src="images/ipod.jpg" alt="ipod image">
-              </div>
-
-              <div class="item">
-                <p>Jeffy</p>
-                <p>$2</p>
-                <button class="cart-button" onClick="addToCart(2,'Jeffy',this )">Add to Cart</button>
-                <img src="images/jeffy.webp" alt="jeffy image">
-              </div>
-
-              <div class="item">
-                <p>Nugget</p>
-                <p>$1</p>
-                <button class="cart-button" onClick="addToCart(1,'Nugget', this)">Add to Cart</button>
-                <img src="images/nugget.jpg" alt="nugget image">
-              </div>
-
-              <div class="item">
-                <p>Tacp cat</p>
-                <p>$3</p>
-                <button class="cart-button" onClick="addToCart(3,'Taco cat', this)">Add to Cart</button>
-                <img src="images/taco cat.jpg" alt="taco cat image">
-              </div>
-
-              <div class="item">
-                <p>This button will delete all your items in the cart</p>
-                <button class="reset-button" onclick="reset()">Reset the cart</button>
-            </div>
-            <!-- Repeat for other items -->
+            <!-- Repeat the items as per your store's product list -->
+            <!-- Add more items as needed -->
         </div>
     </div>
 
@@ -302,6 +213,147 @@
     </div>
 
     <div id="cart-notification">Item added to cart!</div>
+
+    <!-- Spin the Wheel Section -->
+    <div class="wheel-container">
+        <div class="wheel">
+            <div class="spinner"></div>
+        </div>
+        <button class="spin-button" onclick="spinWheel()">Spin the Wheel for Discount!</button>
+        <p id="discount-notification" style="color: #fff; margin-top: 20px;"></p>
+    </div>
+
+    <div class="item">
+        <p>Isaac Shirt</p>
+        <p>$1000</p>
+        <button class="cart-button" onclick="addToCart(1000, 'Isaac Shirt', this)">Add to Cart</button>
+        <img src="images/isaactshirt.jpeg" alt="Isaac Shirt Image">
+    </div>
+
+    <!-- Item 3 -->
+    <div class="item">
+        <p>Super Cool Kid</p>
+        <p>$5</p>
+        <button class="cart-button" onclick="addToCart(5, 'Super Cool Kid', this)">Add to Cart</button>
+        <img src="images/isaachoco.jpeg" alt="Super Cool Kid Image">
+    </div>
+
+    <div class="item">
+        <p>Newjeans Plushie</p>
+        <p>$21</p>
+        <button class="cart-button" onclick="addToCart(21, 'Newjeans Plushie', this)">Add to Cart</button>
+        <img src="images/minji plushie.jpeg" alt="Newjeans Plushie Image">
+    </div>
+
+    <div class="item">
+        <p>Toji's Blade</p>
+        <p>$1530</p>
+        <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade', this)">Add to Cart</button>
+        <img src="images/toji blade.jpg" alt="Toji's Blade Image">
+    </div>
+
+    <div class="item">
+        <p>Cool CS Teacher</p>
+        <p>$64920</p>
+        <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher'. this)">Add to Cart</button>
+        <img src="images/coollueken.jpg" alt="coollueken image">
+    </div>
+
+    <div class="item">
+        <p>Best college</p>
+        <p>$1000</p>
+        <button class="cart-button" onclick="addToCart(1000, 'Irvine', this)">Add to Cart</button>
+        <img src="images/best college shirt.webp" alt="irvine image">
+    </div>
+
+    <div class="item">
+        <p>snail</p>
+        <p>$0.01</p>
+        <button class="cart-button" onClick="addToCart(.01,'snail', this)">Add to Cart</button>
+        <img src="images/chipotle.webp" alt="chip image">
+      </div>
+
+      <div class="item">
+        <p>IU</p>
+        <p>$100</p>
+        <button class="cart-button" onClick="addToCart(100,'IU', this)">Add to Cart</button>
+        <img src="images/iu mascot.jpg" alt="IU image">
+      </div>
+
+      <div class="item">
+        <p>worst brown sugar boba</p>
+        <p>$1</p>
+        <button class="cart-button" onClick="addToCart(1,'brown sugar drink', this)">Add to Cart</button>
+        <img src="images/milkcow brown sugar.avif" alt="boba image">
+      </div>
+
+      <div class="item">
+        <p>cute cat</p>
+        <p>$500</p>
+        <button class="cart-button" onClick="addToCart(500,'doggie', this)">Add to Cart</button>
+        <img src="images/shorkie.webp" alt="shorkie image">
+      </div>
+
+      <div class="item">
+        <p>Peppermint mocha</p>
+        <p>$5.75</p>
+        <button class="cart-button" onClick="addToCart(5.75,'Peppermint Mocha', this)">Add to Cart</button>
+        <img src="images/starbucks.webp" alt="starbucks image">
+      </div>
+
+      <div class="item">
+        <p>Cal Poly</p>
+        <p>$16580</p>
+        <button class="cart-button" onClick="addToCart(16580,'safety', this)">Add to Cart</button>
+        <img src="images/cal poly.png" alt="cal poly image">
+      </div>
+      
+      <div class="item">
+        <p>Should have invested</p>
+        <p>$143</p>
+        <button class="cart-button" onClick="addToCart(143,'GPU', this)">Add to Cart</button>
+        <img src="images/gpu.jpg" alt="gpu image">
+      </div>
+
+      <div class="item">
+        <p>Unesscesary</p>
+        <p>$1000</p>
+        <button class="cart-button" onClick="addToCart(1000,'iphone 16', this)">Add to Cart</button>
+        <img src="images/iphone 16.jpg" alt="iphone 16 image">
+      </div>
+
+      <div class="item">
+        <p>goated cellphone</p>
+        <p>$150</p>
+        <button class="cart-button" onClick="addToCart(150,'Ipod',this )">Add to Cart</button>
+        <img src="images/ipod.jpg" alt="ipod image">
+      </div>
+
+      <div class="item">
+        <p>Jeffy</p>
+        <p>$2</p>
+        <button class="cart-button" onClick="addToCart(2,'Jeffy',this )">Add to Cart</button>
+        <img src="images/jeffy.webp" alt="jeffy image">
+      </div>
+
+      <div class="item">
+        <p>Nugget</p>
+        <p>$1</p>
+        <button class="cart-button" onClick="addToCart(1,'Nugget', this)">Add to Cart</button>
+        <img src="images/nugget.jpg" alt="nugget image">
+      </div>
+
+      <div class="item">
+        <p>Tacp cat</p>
+        <p>$3</p>
+        <button class="cart-button" onClick="addToCart(3,'Taco cat', this)">Add to Cart</button>
+        <img src="images/taco cat.jpg" alt="taco cat image">
+      </div>
+
+      <div class="item">
+        <p>This button will delete all your items in the cart</p>
+        <button class="reset-button" onclick="reset()">Reset the cart</button>
+    </div>
 
     <script>
         let total = 0;
@@ -359,12 +411,24 @@
         function showNotification() {
             const notification = document.getElementById("cart-notification");
             notification.style.display = "block";
-
             setTimeout(() => {
                 notification.style.display = "none";
             }, 2000);
         }
-    </script>
 
+        function spinWheel() {
+            const discounts = [10, 20, 30, 50, 0]; // Discount options (in percentage)
+            const randomIndex = Math.floor(Math.random() * discounts.length);
+            const discount = discounts[randomIndex];
+            
+            document.getElementById("discount-notification").textContent = `You won a ${discount}% discount!`;
+
+            // Apply the discount to the cart total
+            if (discount > 0) {
+                total -= (total * discount / 100);
+                document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
+            }
+        }
+    </script>
 </body>
 </html>
