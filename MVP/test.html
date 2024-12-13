@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isaac Store</title>
+    <title>Supabase Auth</title>
+</head>
+<body>
+    <!-- Signup Form -->
+    <form id="signup-form">
+        <h2>Sign Up</h2>
+        <input id="signup-email" type="email" placeholder="Email" required />
+        <input id="signup-password" type="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+    </form>
 
-    <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <!-- Login Form -->
+    <form id="login-form">
+        <h2>Log In</h2>
+        <input id="login-email" type="email" placeholder="Email" required />
+        <input id="login-password" type="password" placeholder="Password" required />
+        <button type="submit">Log In</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</body>
+</html>
 
     <style>
         body {
@@ -182,13 +199,93 @@
         .spin-button:hover {
             background-color: #0056b3;
         }
-        /* Style Code - Same as Before */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin: 20px 0;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .scroll-container {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+        }
+
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* Add this for login/signup forms styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Feedback messages */
+        #feedback-message {
+            color: #28a745;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Your other styles here */
     </style>
 </head>
 <body>
 
-    <h1>Isaac Store</h1>
+    <!-- Feedback Message -->
+    <div id="feedback-message"></div>
 
+    <h1>Isaac Store</h1>
+    <!-- Your product catalog here -->
     <div class="scroll-container">
         <div class="item-container">
             <!-- Catalog Items -->
@@ -330,31 +427,7 @@
                 <button class="reset-button" onclick="reset()">Reset the cart</button>
             </div>
         
-
-            <!-- Add other items similarly -->
-        </div>
-    </div>
-
-    <div id="cart-items">
-        <h3>Cart Items:</h3>
-        <ul id="item-list"></ul>
-    </div>
-
-    <div id="cart-total">
-        Total: $0
-    </div>
-
-    <div id="discount-section">
-        <p>Have a discount code? Enter it below:</p>
-        <input type="text" id="discount-code" placeholder="Enter code">
-        <button class="cart-button" onclick="applyDiscount()">Apply Discount</button>
-        <p id="discount-message" style="color: green; font-weight: bold;"></p>
-    </div>
-
-    <div class="item">
-        <p>Reset Cart</p>
-        <button class="reset-button" onclick="reset()">Reset the cart</button>
-    </div>
+            <div id="feedback-message"></div>
 
     <script>
         let total = 0;
@@ -431,6 +504,67 @@
                 document.getElementById("discount-message").textContent = "Invalid discount code!";
             }
         }
+        // Assume that supabase is already initialized in the supabase.js file
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        // Handle Login Form Submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password,
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                feedbackMessage.textContent = 'Successfully logged in!';
+                feedbackMessage.style.color = 'green';
+                feedbackMessage.style.display = 'block';
+                setTimeout(() => feedbackMessage.style.display = 'none', 3000);
+            } catch (error) {
+                feedbackMessage.textContent = `Error: ${error.message}`;
+                feedbackMessage.style.color = 'red';
+                feedbackMessage.style.display = 'block';
+                setTimeout(() => feedbackMessage.style.display = 'none', 3000);
+            }
+        });
+
+        // Handle Sign Up Form Submission
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password,
+                });
+
+                if (error) {
+                    throw error;
+                }
+
+                feedbackMessage.textContent = 'Successfully signed up!';
+                feedbackMessage.style.color = 'green';
+                feedbackMessage.style.display = 'block';
+                setTimeout(() => feedbackMessage.style.display = 'none', 3000);
+            } catch (error) {
+                feedbackMessage.textContent = `Error: ${error.message}`;
+                feedbackMessage.style.color = 'red';
+                feedbackMessage.style.display = 'block';
+                setTimeout(() => feedbackMessage.style.display = 'none', 3000);
+            }
+        });
     </script>
+
 </body>
 </html>
