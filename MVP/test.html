@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supabase Auth</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="supabase.js" defer></script>
 </head>
 <body>
     <!-- Signup Form -->
@@ -11,7 +13,7 @@
         <h2>Sign Up</h2>
         <input id="signup-email" type="email" placeholder="Email" required />
         <input id="signup-password" type="password" placeholder="Password" required />
-        <button type="submit">Sign Up</button>
+        <button id="signup-button" type="submit">Sign Up</button>
     </form>
 
     <!-- Login Form -->
@@ -19,9 +21,8 @@
         <h2>Log In</h2>
         <input id="login-email" type="email" placeholder="Email" required />
         <input id="login-password" type="password" placeholder="Password" required />
-        <button type="submit">Log In</button>
+        <button id="login-button" type="submit">Log In</button>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </body>
 </html>
 
@@ -429,7 +430,7 @@
         
             <div id="feedback-message"></div>
 
-    <script>
+            <script>
         let total = 0;
         let cartItems = [];
         let discountApplied = false;
@@ -529,6 +530,7 @@
                 feedbackMessage.style.color = 'green';
                 feedbackMessage.style.display = 'block';
                 setTimeout(() => feedbackMessage.style.display = 'none', 3000);
+            console.log('hello');
             } catch (error) {
                 feedbackMessage.textContent = `Error: ${error.message}`;
                 feedbackMessage.style.color = 'red';
@@ -542,7 +544,8 @@
             e.preventDefault();
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
-
+            console.log(email);
+            console.log(password);
             try {
                 const { data, error } = await supabase.auth.signUp({
                     email,
@@ -554,11 +557,13 @@
                 }
 
                 feedbackMessage.textContent = 'Successfully signed up!';
+                console.log('help');
                 feedbackMessage.style.color = 'green';
                 feedbackMessage.style.display = 'block';
                 setTimeout(() => feedbackMessage.style.display = 'none', 3000);
             } catch (error) {
                 feedbackMessage.textContent = `Error: ${error.message}`;
+                console.log('hello');
                 feedbackMessage.style.color = 'red';
                 feedbackMessage.style.display = 'block';
                 setTimeout(() => feedbackMessage.style.display = 'none', 3000);
