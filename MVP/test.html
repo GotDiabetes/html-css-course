@@ -320,105 +320,105 @@
             <div class="item">
                 <p>Toji's Blade</p>
                 <p>$1530</p>
-                <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade', this)">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(1530, 'Toji\'s Blade')">Add to Cart</button>
                 <img src="images/toji blade.jpg" alt="Toji's Blade Image">
             </div>
         
             <div class="item">
                 <p>Cool CS Teacher</p>
                 <p>$64920</p>
-                <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher'. this)">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(64920, 'Cool CS Teacher', this)">Add to Cart</button>
                 <img src="images/coollueken.jpg" alt="coollueken image">
             </div>
         
             <div class="item">
                 <p>Best college</p>
                 <p>$1000</p>
-                <button class="cart-button" onclick="addToCart(1000, 'Irvine', this)">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(1000, 'Irvine')">Add to Cart</button>
                 <img src="images/best college shirt.webp" alt="irvine image">
             </div>
         
             <div class="item">
                 <p>snail</p>
                 <p>$0.01</p>
-                <button class="cart-button" onClick="addToCart(.01,'snail', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(.01,'snail')">Add to Cart</button>
                 <img src="images/chipotle.webp" alt="chip image">
               </div>
         
               <div class="item">
                 <p>IU</p>
                 <p>$100</p>
-                <button class="cart-button" onClick="addToCart(100,'IU', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(100,'IU')">Add to Cart</button>
                 <img src="images/iu mascot.jpg" alt="IU image">
               </div>
         
               <div class="item">
                 <p>worst brown sugar boba</p>
                 <p>$1</p>
-                <button class="cart-button" onClick="addToCart(1,'brown sugar drink', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(1,'brown sugar drink')">Add to Cart</button>
                 <img src="images/milkcow brown sugar.avif" alt="boba image">
               </div>
         
               <div class="item">
                 <p>cute cat</p>
                 <p>$500</p>
-                <button class="cart-button" onClick="addToCart(500,'doggie', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(500,'doggie')">Add to Cart</button>
                 <img src="images/shorkie.webp" alt="shorkie image">
               </div>
         
               <div class="item">
                 <p>Peppermint mocha</p>
                 <p>$5.75</p>
-                <button class="cart-button" onClick="addToCart(5.75,'Peppermint Mocha', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(5.75,'Peppermint Mocha')">Add to Cart</button>
                 <img src="images/starbucks.webp" alt="starbucks image">
               </div>
         
               <div class="item">
                 <p>Cal Poly</p>
                 <p>$16580</p>
-                <button class="cart-button" onClick="addToCart(16580,'safety', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(16580,'safety')">Add to Cart</button>
                 <img src="images/cal poly.png" alt="cal poly image">
               </div>
               
               <div class="item">
                 <p>Should have invested</p>
                 <p>$143</p>
-                <button class="cart-button" onClick="addToCart(143,'GPU', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(143,'GPU')">Add to Cart</button>
                 <img src="images/gpu.jpg" alt="gpu image">
               </div>
         
               <div class="item">
                 <p>Unesscesary</p>
                 <p>$1000</p>
-                <button class="cart-button" onClick="addToCart(1000,'iphone 16', this)">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(1000,'iphone 16')">Add to Cart</button>
                 <img src="images/iphone 16.jpg" alt="iphone 16 image">
               </div>
         
               <div class="item">
                 <p>goated cellphone</p>
                 <p>$150</p>
-                <button class="cart-button" onClick="addToCart(150,'Ipod',this )">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(150,'Ipod')">Add to Cart</button>
                 <img src="images/ipod.jpg" alt="ipod image">
               </div>
         
               <div class="item">
                 <p>Jeffy</p>
                 <p>$2</p>
-                <button class="cart-button" onClick="addToCart(2,'Jeffy',this )">Add to Cart</button>
+                <button class="cart-button" onClick="addToCart(2,'Jeffy' )">Add to Cart</button>
                 <img src="images/jeffy.webp" alt="jeffy image">
               </div>
         
               <div class="item">
                 <p>Nugget</p>
                 <p>$1</p>
-                <button class="cart-button" onClick="addToCart(1,'Nugget', this)">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(1,'Nugget')">Add to Cart</button>
                 <img src="images/nugget.jpg" alt="nugget image">
               </div>
         
               <div class="item">
                 <p>Tacp cat</p>
                 <p>$3</p>
-                <button class="cart-button" onClick="addToCart(3,'Taco cat', this)">Add to Cart</button>
+                <button class="cart-button" onclick="addToCart(3,'Taco cat')">Add to Cart</button>
                 <img src="images/taco cat.jpg" alt="taco cat image">
               </div>
         
@@ -426,24 +426,38 @@
                 <p>This button will delete all your items in the cart</p>
                 <button class="reset-button" onclick="reset()">Reset the cart</button>
             </div>
+            <div id="cart-items">
+                <h3>Cart Items:</h3>
+                <ul id="item-list"></ul>
+            </div>
+        
+            <div id="cart-total">
+                Total: $0
+            </div>
+        
+            <div id="cart-notification">Item added to cart!</div>
         
             <div id="feedback-message"></div>
 
-            <script src = "supabase.js">
-        let total = 0;
-        let cartItems = [];
-        let discountApplied = false;
+    <script>
+            let total = 0;
+            let cartItems = [];
+            let discountApplied = false;
 
-        function addToCart(price, itemName) {
-            const item = { name: itemName, price };
-            cartItems.push(item);
-            total += price;
+            function addToCart(price, itemName, button) {
+                const item = { name: itemName, price };
+                cartItems.push(item);
+                total += price;
 
-            document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
-            updateCartDisplay();
+                document.getElementById("cart-total").textContent = `Total: $${total.toFixed(2)}`;
+                updateCartDisplay();
 
-            showNotification();
-        }
+                // Disable the button and change text after adding the item
+                button.disabled = true;
+                button.textContent = "Added to Cart";
+
+                showNotification();
+            }
 
         function reset() {
             total = 0;
@@ -504,6 +518,8 @@
                 document.getElementById("discount-message").textContent = "Invalid discount code!";
             }
         }
+    </script>
+        <script src = "supabase.js">
         // Assume that supabase is already initialized in the supabase.js file
         const loginForm = document.getElementById('login-form');
         const signupForm = document.getElementById('signup-form');
